@@ -1,5 +1,12 @@
 # 💬 Chat App
 
+![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-4169E1?logo=postgresql&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white)
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
+
 A real-time chat application with rooms, online presence and typing indicators — built with **Next.js**, **PostgreSQL**, **Drizzle ORM** and **Server-Sent Events (SSE)**.
 
 ## ✨ Features
@@ -42,7 +49,13 @@ npm install
 
 ### 3. Start PostgreSQL
 
-Using Docker (easiest):
+Using Docker Compose (easiest):
+
+```bash
+docker compose up -d
+```
+
+Or with plain Docker:
 
 ```bash
 docker run --name chat-db -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=app_db -p 5432:5432 -d postgres:16
@@ -124,7 +137,42 @@ src/
 | POST   | `/api/typing`       | Send typing status          |
 | GET    | `/api/sse`          | Real-time event stream      |
 
+## ⚡ Quick Start (all commands)
+
+```bash
+git clone https://github.com/b2kproedit/chat-app.git
+cd chat-app
+npm install
+docker compose up -d
+cp .env.example .env
+npm run db:push
+npm run dev
+```
+
+> On Windows (Command Prompt) use `copy .env.example .env` instead of `cp`.
+
+## 🩺 Troubleshooting
+
+| Problem | Fix |
+|---------|-----|
+| `DATABASE_URL is required` | You forgot to create `.env` — run `cp .env.example .env` |
+| `ECONNREFUSED 127.0.0.1:5432` | PostgreSQL isn't running — run `docker compose up -d` |
+| `relation "rooms" does not exist` | Tables aren't created — run `npm run db:push` |
+| Port 3000 already in use | Run on another port: `npm run dev -- -p 3001` |
+| Check the server is healthy | Open `http://localhost:3000/api/health` |
+
+## 🗺️ Roadmap
+
+- [ ] User authentication
+- [ ] Emoji reactions
+- [ ] File & image sharing
+- [ ] Private (direct) messages
+- [ ] Dark / light theme toggle
+
 ## 🤝 Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for full details.
+
 
 1. Fork the repo
 2. Create a branch: `git checkout -b feature/my-feature`
