@@ -1,12 +1,22 @@
 {
-  "name": "nextjs-postgresql-template",
+  "name": "chat-app",
+  "version": "1.0.0",
+  "description": "Real-time chat app with rooms, online users and typing indicators, built with Next.js, PostgreSQL, Drizzle ORM and Server-Sent Events.",
+  "license": "MIT",
+  "author": "b2kproedit",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/b2kproedit/chat-app.git"
+  },
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "db:push": "drizzle-kit push --config=drizzle.config.json",
+    "db:studio": "drizzle-kit studio --config=drizzle.config.json"
   },
   "dependencies": {
     "@types/uuid": "^10.0.0",
